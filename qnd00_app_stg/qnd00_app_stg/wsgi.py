@@ -1,5 +1,5 @@
 """
-WSGI config for qnd00_app_stg project.
+WSGI config for qnode30_app project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -8,9 +8,18 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
 """
 
 import os
+import pathlib
+from dotenv import load_dotenv
+
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'qnd00_app_stg.settings')
+CURRENT_DIR = pathlib.Path(__file__).resolve().parent
+BASE_DIR = CURRENT_DIR.parent
+ENV_FILE_PATH = BASE_DIR / ".env_stage"
+
+load_dotenv(str(ENV_FILE_PATH))
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'qnd00_app_stg.settings.stage')
 
 application = get_wsgi_application()
